@@ -8,7 +8,7 @@
 
 namespace canis\sensors\sites;
 
-class Application extends Dynamic
+interface SiteInterface
 {
-
+	public function getSensors();
 }

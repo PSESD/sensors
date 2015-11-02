@@ -6,9 +6,9 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\sites;
+namespace canis\sensors\assets;
 
-class Application extends Dynamic
+interface AssetInterface
 {
-
+	public function getName();
 }

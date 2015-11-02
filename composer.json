@@ -13,9 +13,9 @@
 	"require-dev": {
 	},
     "autoload": {
-		"psr-4": { "canis\\sensor\\": "lib" }
+		"psr-4": { "canis\\sensors\\": "lib" }
     },
     "extra": {
-    	"bootstrap": "canis\\sensor\\Extension"
+    	"bootstrap": "canis\\sensors\\Extension"
     }
 }

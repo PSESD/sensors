@@ -1,5 +1,7 @@
 <?php
-namespace canis\sensor\Extension;
+namespace canis\sensor;
+
+use Yii;
 
 class Extension implements \yii\base\BootstrapInterface
 {

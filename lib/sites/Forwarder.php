@@ -8,7 +8,8 @@
 
 namespace canis\sensors\sites;
 
-class Static extends Base
+class Forwarder extends Base
 {
-
+	public $from;
+	public $to;
 }

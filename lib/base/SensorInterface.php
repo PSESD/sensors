@@ -6,9 +6,8 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\sites;
+namespace canis\sensors\base;
 
-class Application extends Dynamic
+interface SensorInterface
 {
-
 }

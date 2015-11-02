@@ -6,14 +6,14 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\assets;
+namespace canis\sensors\base;
 
+use Yii;
 
-abstract class Base 
-	extends \canis\sensors\base\BaseObject
-	implements AssetInterface
+abstract class Sensor
+	extends BaseObject
+	implements SensorInterface
 {
-	abstract public function getType();
 	public function loadModels(callable $modelBuilder)
 	{
 		if ($this->getModel() === null) {
@@ -29,10 +29,4 @@ abstract class Base
 	{
 		
 	}
-	public function getPackage()
-    {
-    	$package = parent::getPackage();
-    	$package['id'] = $this->getId();
-    	return $package;
-    }
 }
