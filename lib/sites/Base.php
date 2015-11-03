@@ -7,6 +7,8 @@
  */
 
 namespace canis\sensors\sites;
+
+use Yii;
 use canis\sensors\base\HasSensorsTrait;
 
 abstract class Base 
@@ -19,6 +21,9 @@ abstract class Base
 	protected $_hostnames = [];
 	protected $_services = [];
 	protected $_id;
+	protected $_testUrl;
+	protected $_testLookFor = false;
+	
 	public function __sleep()
     {
         $keys = parent::__sleep();
@@ -155,6 +160,31 @@ abstract class Base
 		return false;
 	}
 
+	public function getTestUrl()
+	{
+		if (isset($this->_testUrl)) {
+			return $this->_testUrl;
+		}
+		return $this->getUrl();
+	}
+
+	public function setTestUrl($url)
+	{
+		$this->_testUrl = $url;
+		return $this;
+	}
+
+	public function getTestLookFor()
+	{
+		return $this->_testLookFor;
+	}
+
+	public function setTestLookFor($look)
+	{
+		$this->_testLookFor = $look;
+		return $this;
+	}
+
 	public function getPackage()
     {
     	$package = parent::getPackage();
@@ -164,8 +194,10 @@ abstract class Base
     	return $package;
     }
 
-	public function defaultSensors()
+	protected function defaultSensors()
 	{
-		return [];
+		$sensors = parent::defaultSensors();
+
+		return $sensors;
 	}
 }

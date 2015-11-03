@@ -22,8 +22,27 @@ trait HasSensorsTrait
 		return $this;
 	}
 
+    protected function getDefaultSensors()
+    {
+        $sensors = [];
+        foreach (static::defaultSensors() as $sensorConfig) {
+            if (($sensor = static::loadObject($sensorConfig, SensorInterface::class))) {
+                $sensor->parentObject = $this;
+                $sensors[] = $sensor;
+            }
+        }
+        return $sensors;
+    }
+
+
 	public function getSensors()
 	{
-		return $this->_sensors;
+		$sensors = array_merge($this->getDefaultSensors(), $this->_sensors);
+		foreach ($sensors as $k => $sensor) {
+			if ($sensor === false) {
+				unset($sensors[$k]);
+			}
+		}
+		return $sensors;
 	}
 }

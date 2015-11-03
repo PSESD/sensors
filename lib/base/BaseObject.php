@@ -48,18 +48,25 @@ abstract class BaseObject
 
 	public static function loadObject($config, $interfaceName)
     {
-    	if (!isset($config['class']) || !class_exists($config['class'])) {
-    		return false;
-    	}
-    	$reflection = new \ReflectionClass($config['class']);
-    	if (!$reflection->implementsInterface($interfaceName)) {
-    		return false;
-    	}
-    	try {
-    		$object = Yii::createObject($config);
-    	} catch (\Exception $e) {
-    		$object = false;
-    	}
+        if (!is_object($config)) {
+        	if (!isset($config['class']) || !class_exists($config['class'])) {
+        		return false;
+        	}
+        	$reflection = new \ReflectionClass($config['class']);
+        	if (!$reflection->implementsInterface($interfaceName)) {
+        		return false;
+        	}
+            try {
+                $object = Yii::createObject($config);
+            } catch (\Exception $e) {
+                $object = false;
+            }
+        } else {
+            $object = $config;
+            if (!is_a($object, $interfaceName)) {
+                return false;
+            }
+        }
     	return $object;
     }
 
@@ -103,4 +110,9 @@ abstract class BaseObject
 	{
 		return $this->_parentObject;
 	}
+
+    protected function defaultSensors()
+    {
+        return [];
+    }
 }

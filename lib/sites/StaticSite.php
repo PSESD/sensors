@@ -8,7 +8,16 @@
 
 namespace canis\sensors\sites;
 
+use canis\sensors\remote\HttpTest;
+
 class StaticSite extends Base
 {
-
+	protected function defaultSensors()
+	{
+		$sensors = parent::defaultSensors();
+		$sensors['provider-sensor'] = [
+			'class' => HttpTest::className()
+		];
+		return $sensors;
+	}
 }

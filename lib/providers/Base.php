@@ -8,9 +8,11 @@
 
 namespace canis\sensors\providers;
 
+use Yii;
 use canis\sensors\sites\HasSitesTrait;
 use canis\sensors\assets\HasAssetsTrait;
 use canis\sensors\base\HasSensorsTrait;
+use canis\sensors\remote\ProviderSensor;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
@@ -45,6 +47,15 @@ abstract class Base
 	public function cleanModels(callable $modelBuilder)
 	{
 		
+	}
+
+	protected function defaultSensors()
+	{
+		$sensors = parent::defaultSensors();
+		$sensors['provider-sensor'] = [
+			'class' => ProviderSensor::className()
+		];
+		return $sensors;
 	}
 
 	public function setId($id)
