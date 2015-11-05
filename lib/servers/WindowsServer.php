@@ -6,9 +6,9 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\assets;
+namespace canis\sensors\servers;
 
-interface AssetInterface
+class WindowsServer extends Server
 {
-	public function getName();
+
 }

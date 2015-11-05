@@ -12,7 +12,7 @@ interface BaseInterface
 {
 	public function getId();
 	public function getMeta();
-	public function loadModels(callable $modelBuilder);
-	public function cleanModels(callable $modelBuilder);
+	// public function loadModels(callable $modelBuilder);
+	// public function cleanModels(callable $modelBuilder);
 
 }

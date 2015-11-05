@@ -6,7 +6,7 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\providers;
+namespace canis\sensors\servers;
 
 class AppFarm extends DockerServer
 {

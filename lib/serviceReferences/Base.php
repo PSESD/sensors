@@ -1,0 +1,80 @@
+<?php
+/**
+ * @link http://canis.io
+ *
+ * @copyright Copyright (c) 2015 Canis
+ * @license http://canis.io/license/
+ */
+
+namespace canis\sensors\serviceReferences;
+
+use Yii;
+use canis\sensors\resources\HasResourcesTrait;
+use canis\sensors\base\HasSensorsTrait;
+use canis\sensors\remote\servicesensor;
+
+abstract class Base 
+	extends \canis\sensors\base\BaseObject
+	implements ServiceReferenceInterface
+{
+	use HasResourcesTrait;
+	use HasSensorsTrait;
+
+	protected $_server;
+	protected $_service;
+
+	public function getId()
+	{
+		return $this->server .'.' . $this->service;
+	}
+	
+	public function setServer($server)
+	{
+		$this->_server = $server;
+	}
+
+
+	public function getServer()
+	{
+		return $this->_server;
+	}
+
+	public function getService()
+	{
+		return $this->_service;
+	}
+
+	public function setService($service)
+	{
+		$this->_service = $service;
+	}
+
+	public function getIpResource($ip, $create = true)
+	{
+		$resources = $this->ipResources;
+		foreach ($resources as $ipResource) {
+			if ($ipResource->ip === $ip) {
+				return $ipResource;
+			}
+		}
+		if ($create) {
+			$resource = new \canis\sensors\resources\IP;
+			$resource->ip = $ip;
+			$resource->parentObject = $this;
+			$this->_resources[] = $resource;
+			return $resource;
+		}
+		return false;
+	}
+
+	public function getIpResources()
+	{
+		$resources = [];
+		foreach ($this->resources as $resource) {
+			if ($resource instanceof \canis\sensors\resources\IP) {
+				$resources[] = $resource;
+			}
+		}
+		return $resources;
+	}
+}

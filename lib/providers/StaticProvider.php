@@ -10,7 +10,7 @@ namespace canis\sensors\providers;
 
 use Yii;
 use canis\sensors\sites\HasSitesTrait;
-use canis\sensors\servers\HasServersTrait;
+use canis\sensors\resources\HasResourcesTrait;
 use canis\sensors\base\HasSensorsTrait;
 use canis\sensors\remote\ProviderSensor;
 
@@ -19,7 +19,7 @@ abstract class Base
 	implements ProviderInterface
 {
 	use HasSitesTrait;
-	use HasServersTrait;
+	use HasResourcesTrait;
 	use HasSensorsTrait;
 
 	protected $_id;

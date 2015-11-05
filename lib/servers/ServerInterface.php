@@ -6,9 +6,9 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\providers;
+namespace canis\sensors\servers;
 
-class Application extends Base
+interface ServerInterface
 {
-
+	public function getResources();
 }

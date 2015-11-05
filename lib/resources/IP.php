@@ -6,7 +6,7 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\assets;
+namespace canis\sensors\resources;
 
 class IP extends Base
 {

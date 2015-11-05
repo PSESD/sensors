@@ -10,16 +10,21 @@ namespace canis\sensors\sites;
 
 use Yii;
 use canis\sensors\base\HasSensorsTrait;
+use canis\sensors\services\HasServicesTrait;
+use canis\sensors\serviceReferences\HasServiceReferencesTrait;
+use canis\sensors\resources\HasResourcesTrait;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
 	implements SiteInterface
 {
 	use HasSensorsTrait;
+	use HasServicesTrait;
+	use HasServiceReferencesTrait;
+	use HasResourcesTrait;
 
 	protected $_ips = [];
-	protected $_hostnames = [];
-	protected $_services = [];
+	protected $_url;
 	protected $_id;
 	protected $_testUrl;
 	protected $_testLookFor = false;
@@ -88,8 +93,8 @@ abstract class Base
 	{
 		foreach ($this->_ips as $key => $ip) {
 			if (!is_object($ip) && $this->parentObject !== null) {
-				if (($ipAsset = $this->parentObject->getIpAsset($ip))) {
-					$this->_ips[$key] = $ipAsset;
+				if (($ipResource = $this->parentObject->getIpResource($ip))) {
+					$this->_ips[$key] = $ipResource;
 				} else {
 					unset($this->_ips[$key]);
 				}
@@ -130,34 +135,15 @@ abstract class Base
 		return null;
 	}
 
-	public function getService()
+	public function setUrl($url)
 	{
-		if (in_array('https', $this->services)) {
-			return 'https';
-		}
-		return $this->services[0];
-	}
-
-	public function getServices()
-	{
-		if (empty($this->_services)) {
-			return ['http'];
-		}
-		return $this->_services;
-	}
-
-	public function setServices(array $services)
-	{
-		$this->_services = array_values($services);
+		$this->_url = $url;
 		return $this;
 	}
 
 	public function getUrl()
 	{
-		if (($protocol = $this->service) && ($hostname = $this->hostname)) {
-			return $protocol .'://' . $hostname;
-		}
-		return false;
+		return $this->_url;
 	}
 
 	public function getTestUrl()

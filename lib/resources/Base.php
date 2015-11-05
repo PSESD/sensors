@@ -6,12 +6,12 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\assets;
+namespace canis\sensors\resources;
 
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
-	implements AssetInterface
+	implements ResourceInterface
 {
 	abstract public function getType();
 	public function loadModels(callable $modelBuilder)

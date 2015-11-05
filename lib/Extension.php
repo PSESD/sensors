@@ -1,5 +1,5 @@
 <?php
-namespace canis\sensor;
+namespace canis\sensors;
 
 use Yii;
 
@@ -10,6 +10,6 @@ class Extension implements \yii\base\BootstrapInterface
      */
     public function bootstrap($app)
     {
-        Yii::setAlias('@canis/sensor', __DIR__);
+        Yii::setAlias('@canis/sensors', __DIR__);
     }
 }

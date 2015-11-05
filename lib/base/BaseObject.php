@@ -59,6 +59,7 @@ abstract class BaseObject
             try {
                 $object = Yii::createObject($config);
             } catch (\Exception $e) {
+                throw $e;
                 $object = false;
             }
         } else {

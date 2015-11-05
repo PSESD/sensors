@@ -6,21 +6,20 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\providers;
+namespace canis\sensors\servers;
 
 use Yii;
-use canis\sensors\sites\HasSitesTrait;
-use canis\sensors\servers\HasServersTrait;
+use canis\sensors\resources\HasResourcesTrait;
 use canis\sensors\base\HasSensorsTrait;
-use canis\sensors\remote\ProviderSensor;
+use canis\sensors\services\HasServicesTrait;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
-	implements ProviderInterface
+	implements ServerInterface
 {
-	use HasSitesTrait;
-	use HasServersTrait;
+	use HasResourcesTrait;
 	use HasSensorsTrait;
+	use HasServicesTrait;
 
 	protected $_id;
 
@@ -28,11 +27,6 @@ abstract class Base
 	{
 		foreach ($this->resources as $resource) {
 			if (!$resource->loadModels($modelBuilder)) {
-				return false;
-			}
-		}
-		foreach ($this->sites as $site) {
-			if (!$site->loadModels($modelBuilder)) {
 				return false;
 			}
 		}
@@ -47,15 +41,6 @@ abstract class Base
 	public function cleanModels(callable $modelBuilder)
 	{
 		
-	}
-
-	protected function defaultSensors()
-	{
-		$sensors = parent::defaultSensors();
-		$sensors['provider-sensor'] = [
-			'class' => ProviderSensor::className()
-		];
-		return $sensors;
 	}
 
 	public function setId($id)
