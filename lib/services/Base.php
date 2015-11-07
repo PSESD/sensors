@@ -9,21 +9,34 @@
 namespace canis\sensors\services;
 
 use Yii;
-use canis\sensors\resources\HasResourcesTrait;
-use canis\sensors\base\HasSensorsTrait;
+use canis\sensors\resources\HasResourcesBehavior;
+use canis\sensors\resourceReferences\HasResourceReferencesBehavior;
+use canis\sensors\base\HasSensorsBehavior;
 use canis\sensors\remote\servicesensor;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
 	implements ServiceInterface
 {
-	use HasResourcesTrait;
-	use HasSensorsTrait;
-
 	protected $_id;
 	protected $_server;
 
-	
+	public function behaviors()
+	{
+		return array_merge(parent::behaviors(), [
+			'HasSensors' => ['class' => HasSensorsBehavior::className()],
+			'HasResourceReferences' => ['class' => HasResourceReferencesBehavior::className()],
+			'HasResources' => ['class' => HasResourcesBehavior::className()],
+		]);
+	}
+	public function simpleProperties()
+    {
+        return array_merge(parent::simpleProperties(), [
+            'server' => $this->getServer(),
+            'id' => $this->getId()
+        ]);
+    }
+
 	public function setServer($server)
 	{
 		$this->_server = $server;
@@ -43,8 +56,25 @@ abstract class Base
 
 	public function getId()
 	{
+		if (!isset($this->_id)) {
+			return $this->defaultId;
+		}
 		return $this->_id;
 	}
+
+	public function getName()
+	{
+		if (!isset($this->_name)) {
+			return $this->defaultName;
+		}
+		return $this->_name;
+	}
+
+	abstract public function getDefaultName();
+
+	abstract public function getDefaultId();
+
+	abstract public function getType();
 
 	public function getIpResource($ip, $create = true)
 	{

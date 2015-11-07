@@ -11,4 +11,17 @@ namespace canis\sensors\services;
 class HttpService extends Base
 {
 
+	public function getType()
+	{
+		return 'web';
+	}
+
+	public function getDefaultName()
+	{
+		return 'Web';
+	}
+	public function getDefaultId()
+	{
+		return 'http';
+	}
 }

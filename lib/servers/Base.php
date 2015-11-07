@@ -9,39 +9,33 @@
 namespace canis\sensors\servers;
 
 use Yii;
-use canis\sensors\resources\HasResourcesTrait;
-use canis\sensors\base\HasSensorsTrait;
-use canis\sensors\services\HasServicesTrait;
+use canis\sensors\resources\HasResourcesBehavior;
+use canis\sensors\resourceReferences\HasResourceReferencesBehavior;
+use canis\sensors\base\HasSensorsBehavior;
+use canis\sensors\services\HasServicesBehavior;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
 	implements ServerInterface
 {
-	use HasResourcesTrait;
-	use HasSensorsTrait;
-	use HasServicesTrait;
-
 	protected $_id;
 
-	public function loadModels(callable $modelBuilder)
+	public function behaviors()
 	{
-		foreach ($this->resources as $resource) {
-			if (!$resource->loadModels($modelBuilder)) {
-				return false;
-			}
-		}
-		foreach ($this->sensors as $sensor) {
-			if (!$sensor->loadModels($modelBuilder)) {
-				return false;
-			}
-		}
-		return true;
+		return array_merge(parent::behaviors(), [
+			'HasSensors' => ['class' => HasSensorsBehavior::className()],
+			'HasServices' => ['class' => HasServicesBehavior::className()],
+			'HasResourceReferences' => ['class' => HasResourceReferencesBehavior::className()],
+			'HasResources' => ['class' => HasResourcesBehavior::className()],
+		]);
 	}
 
-	public function cleanModels(callable $modelBuilder)
-	{
-		
-	}
+	public function simpleProperties()
+    {
+        return array_merge(parent::simpleProperties(), [
+            'id' => $this->getId()
+        ]);
+    }
 
 	public function setId($id)
 	{

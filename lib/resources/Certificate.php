@@ -14,6 +14,15 @@ class Certificate extends Base
 	public $startDate;
 	public $expirationDate;
 
+	public function simpleProperties()
+    {
+        return array_merge(parent::simpleProperties(), [
+            'id' => $this->getId(),
+            'expirationDate' => $this->expirationDate,
+            'startDate' => $this->startDate 
+        ]);
+    }
+
 	public function setId($id)
 	{
 		$this->_id = $id;

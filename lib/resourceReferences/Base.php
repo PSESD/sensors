@@ -6,30 +6,26 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\serviceReferences;
+namespace canis\sensors\resourceReferences;
 
 use Yii;
 use canis\sensors\resources\HasResourcesBehavior;
-use canis\sensors\resourceReferences\HasResourceReferencesBehavior;
 use canis\sensors\base\HasSensorsBehavior;
-use canis\sensors\remote\servicesensor;
+use canis\sensors\remote\resourcesensor;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
-	implements ServiceReferenceInterface
+	implements ResourceReferenceInterface
 {
 	protected $_object;
 	protected $_objectType;
-	protected $_service;
+	protected $_resource;
 
 	abstract public function getType();
 
 	public function behaviors()
 	{
 		return array_merge(parent::behaviors(), [
-			'HasSensors' => ['class' => HasSensorsBehavior::className()],
-			'HasResourceReferences' => ['class' => HasResourceReferencesBehavior::className()],
-			'HasResources' => ['class' => HasResourcesBehavior::className()],
 		]);
 	}
 
@@ -37,13 +33,13 @@ abstract class Base
     {
         return array_merge(parent::simpleProperties(), [
             'object' => $this->getObject(),
-            'service' => $this->getService()
+            'resource' => $this->getResource()
         ]);
     }
 
 	public function getId()
 	{
-		return $this->object .'.' . $this->service;
+		return $this->object .'.' . $this->resource;
 	}
 	
 	public function setObject($object)
@@ -68,32 +64,14 @@ abstract class Base
 		return $this->_objectType;
 	}
 
-	public function getService()
+	public function getResource()
 	{
-		return $this->_service;
+		return $this->_resource;
 	}
 
-	public function setService($service)
+	public function setResource($resource)
 	{
-		$this->_service = $service;
-	}
-
-	public function getIpResource($ip, $create = true)
-	{
-		$resources = $this->ipResources;
-		foreach ($resources as $ipResource) {
-			if ($ipResource->ip === $ip) {
-				return $ipResource;
-			}
-		}
-		if ($create) {
-			$resource = new \canis\sensors\resources\IP;
-			$resource->ip = $ip;
-			$resource->parentObject = $this;
-			$this->_resources[] = $resource;
-			return $resource;
-		}
-		return false;
+		$this->_resource = $resource;
 	}
 
 	public function discoverObject($providerInstance, $sameProvider = false)
@@ -105,7 +83,6 @@ abstract class Base
 		if ($sameProvider) {
 			$where['provider_id'] = $providerInstance->model->primaryKey;
 		}
-
 		return $providerInstance->discoverObject($this->objectType, $this->object, $where);
 	}
 
@@ -117,9 +94,9 @@ abstract class Base
 		return $object->primaryKey;
 	}
 
-	public function discoverService($providerInstance, $sameProvider = false)
+	public function discoverResource($providerInstance, $sameProvider = false)
 	{
-		if (empty($this->service)) {
+		if (empty($this->resource)) {
 			return false;
 		}
 		$where = [];
@@ -130,15 +107,16 @@ abstract class Base
 		if ($sameProvider) {
 			$where['provider_id'] = $providerInstance->model->primaryKey;
 		}
-		return $providerInstance->discoverObject('service', $this->service, $where);
+
+		return $providerInstance->discoverObject('resource', $this->resource, $where);
 	}
 
-	public function discoverServiceId($providerInstance, $sameProvider = false)
+	public function discoverResourceId($providerInstance, $sameProvider = false)
 	{
-		if (!($service = $this->discoverService($providerInstance, $sameProvider))) {
+		if (!($resource = $this->discoverResource($providerInstance, $sameProvider))) {
 			return null;
 		}
-		return $service->primaryKey;
+		return $resource->primaryKey;
 	}
 
 	public function getIpResources()

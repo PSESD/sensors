@@ -9,9 +9,9 @@
 namespace canis\sensors\providers;
 
 use Yii;
-use canis\sensors\sites\HasSitesTrait;
-use canis\sensors\resources\HasResourcesTrait;
-use canis\sensors\base\HasSensorsTrait;
+use canis\sensors\sites\HasSitesBehavior;
+use canis\sensors\resources\HasResourcesBehavior;
+use canis\sensors\base\HasSensorsBehavior;
 use canis\sensors\remote\ProviderSensor;
 
 class LiveProvider 

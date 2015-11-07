@@ -10,7 +10,4 @@ namespace canis\sensors\providers;
 
 interface ProviderInterface
 {
-	public function getServers();
-	public function getSites();
-	public function getSensors();
 }

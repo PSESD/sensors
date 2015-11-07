@@ -11,7 +11,7 @@ namespace canis\sensors\base;
 use Yii;
 
 abstract class BaseObject 
-	extends \yii\base\Object
+	extends \yii\base\Component
 	implements BaseInterface
 {
 	public $invalidEntries = [];
@@ -19,7 +19,7 @@ abstract class BaseObject
 	protected $_meta;
 	protected $_model;
 	protected $_parentObject;
-	
+
 	public function __sleep()
     {
         $keys = array_keys((array) $this);
@@ -71,6 +71,21 @@ abstract class BaseObject
     	return $object;
     }
 
+    public function simpleClone()
+    {
+        $cloneObject = $this->simpleProperties();;
+        $cloneObject['class'] = get_class($this);
+        return Yii::createObject($cloneObject);
+    }
+
+    public function simpleProperties()
+    {
+        return [
+            'name' => $this->getName(),
+            'meta' => $this->getMeta()
+        ];
+    }
+
 	public function setName($name)
 	{
 		$this->_name = $name;
@@ -112,7 +127,7 @@ abstract class BaseObject
 		return $this->_parentObject;
 	}
 
-    protected function defaultSensors()
+    public function defaultSensors()
     {
         return [];
     }

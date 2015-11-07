@@ -10,5 +10,16 @@ namespace canis\sensors\services;
 
 class DatabaseService extends Base
 {
-
+	public function getType()
+	{
+		return 'db';
+	}
+	public function getDefaultName()
+	{
+		return 'db';
+	}
+	public function getDefaultId()
+	{
+		return 'db';
+	}
 }

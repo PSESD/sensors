@@ -10,5 +10,4 @@ namespace canis\sensors\servers;
 
 interface ServerInterface
 {
-	public function getResources();
 }

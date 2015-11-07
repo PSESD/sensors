@@ -6,14 +6,14 @@
  * @license http://canis.io/license/
  */
 
-namespace canis\sensors\serviceReferences;
+namespace canis\sensors\resourceReferences;
 
 use Yii;
-class ServiceConnection 
+class DedicatedResource 
 	extends Base
 {
 	public function getType()
 	{
-		return 'connection';
+		return 'dedicated';
 	}
 }

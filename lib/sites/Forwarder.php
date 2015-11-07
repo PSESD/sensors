@@ -12,4 +12,11 @@ class Forwarder extends Base
 {
 	public $from;
 	public $to;
+	public function simpleProperties()
+    {
+        return array_merge(parent::simpleProperties(), [
+            'from' => $this->from,
+            'to' => $this->to
+        ]);
+    }
 }

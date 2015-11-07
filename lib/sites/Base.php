@@ -9,26 +9,33 @@
 namespace canis\sensors\sites;
 
 use Yii;
-use canis\sensors\base\HasSensorsTrait;
-use canis\sensors\services\HasServicesTrait;
-use canis\sensors\serviceReferences\HasServiceReferencesTrait;
-use canis\sensors\resources\HasResourcesTrait;
+use canis\sensors\base\HasSensorsBehavior;
+use canis\sensors\services\HasServicesBehavior;
+use canis\sensors\serviceReferences\HasServiceReferencesBehavior;
+use canis\sensors\resourceReferences\HasResourceReferencesBehavior;
+use canis\sensors\resources\HasResourcesBehavior;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
 	implements SiteInterface
 {
-	use HasSensorsTrait;
-	use HasServicesTrait;
-	use HasServiceReferencesTrait;
-	use HasResourcesTrait;
-
 	protected $_ips = [];
 	protected $_url;
 	protected $_id;
 	protected $_testUrl;
 	protected $_testLookFor = false;
 	
+	public function behaviors()
+	{
+		return array_merge(parent::behaviors(), [
+			'HasSensors' => ['class' => HasSensorsBehavior::className()],
+			'HasServices' => ['class' => HasServicesBehavior::className()],
+			'HasServiceReferences' => ['class' => HasServiceReferencesBehavior::className()],
+			'HasResourceReferences' => ['class' => HasResourceReferencesBehavior::className()],
+			'HasResources' => ['class' => HasResourcesBehavior::className()],
+		]);
+	}
+
 	public function __sleep()
     {
         $keys = parent::__sleep();
@@ -40,33 +47,16 @@ abstract class Base
 
         return $keys;
     }
-
-	public function loadModels(callable $modelBuilder)
-	{
-		if ($this->getModel() === null) {
-			$this->_model = $modelBuilder($this);
-		}
-		if (!$this->_model) {
-			return false;
-		}
-		foreach ($this->sensors as $sensor) {
-			if (!$sensor->loadModels($modelBuilder)) {
-				return false;
-			}
-		}
-		foreach ($this->getIps() as $ip) {
-			if ($ip->getModel() !== null && !static::associateModels($this->getModel(), $ip->getModel())) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public function cleanModels(callable $modelBuilder)
-	{
-		
-	}
-
+    public function simpleProperties()
+    {
+        return array_merge(parent::simpleProperties(), [
+            'id' => $this->getId(),
+            'url' => $this->getUrl(),
+            'testUrl' => $this->getTestUrl(),
+            'testLookFor' => $this->getTestLookFor()
+        ]);
+    }
+    
 	public function setId($id)
 	{
 		$this->_id = $id;
@@ -107,30 +97,6 @@ abstract class Base
 	{
 		if (!empty($this->_ips)) {
 			return $this->_ips[0];
-		}
-		return null;
-	}
-	public function setHostnames(array $hostnames)
-	{
-		$this->_hostnames = array_values($hostnames);
-		return $this;
-	}
-
-	public function setHostname(string $hostname)
-	{
-		$this->_hostnames = [$hostname];
-		return $this;
-	}
-
-	public function getHostnames()
-	{
-		return $this->_hostnames;
-	}
-
-	public function getHostname()
-	{
-		if (!empty($this->_hostnames)) {
-			return $this->_hostnames[0];
 		}
 		return null;
 	}
@@ -176,11 +142,10 @@ abstract class Base
     	$package = parent::getPackage();
     	$package['id'] = $this->getId();
     	$package['url'] = $this->getUrl();
-    	$package['hostnames'] = $this->getHostnames();
     	return $package;
     }
 
-	protected function defaultSensors()
+	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();
 

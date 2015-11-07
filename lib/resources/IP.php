@@ -12,9 +12,18 @@ class IP extends Base
 {
 	public $ip;
 
+	public function simpleProperties()
+    {
+    	$properties = parent::simpleProperties();
+    	unset($properties['id']);
+        return array_merge($properties, [
+            'ip' => $this->ip
+        ]);
+    }
+
 	public function getId()
 	{
-		return $this->ip;
+		return 'ip.'.$this->ip;
 	}
 
 	public function getName()

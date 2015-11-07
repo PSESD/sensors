@@ -1,22 +1,32 @@
 <?php
 namespace canis\sensors\base;
 
-trait HasSensorsTrait
+class HasSensorsBehavior extends HasBaseBehavior
 {
 	protected $_sensors = [];
 	
+	protected function getObjects()
+	{
+		return $this->getSensors();
+	}
+
+	protected function getObjectType()
+	{
+		return 'sensor';
+	}
+
 	public function setSensors($sensors)
 	{
 		$this->_sensors = [];
 		foreach ($sensors as $sensorConfig) {
 			if (($sensor = static::loadObject($sensorConfig, SensorInterface::class))) {
-				$sensor->parentObject = $this;
+				$sensor->parentObject = $this->owner;
 				$this->_sensors[] = $sensor;
 			} else {
-				if (!isset($this->invalidEntries['sensors'])) {
-					$this->invalidEntries['sensors'] = [];
+				if (!isset($this->owner->invalidEntries['sensors'])) {
+					$this->owner->invalidEntries['sensors'] = [];
 				}
-				$this->invalidEntries['sensors'][] = $sensorConfig;
+				$this->owner->invalidEntries['sensors'][] = $sensorConfig;
 			}
 		}
 		return $this;
@@ -25,9 +35,9 @@ trait HasSensorsTrait
     protected function getDefaultSensors()
     {
         $sensors = [];
-        foreach (static::defaultSensors() as $sensorConfig) {
+        foreach ($this->owner->defaultSensors() as $sensorConfig) {
             if (($sensor = static::loadObject($sensorConfig, SensorInterface::class))) {
-                $sensor->parentObject = $this;
+                $sensor->parentObject = $this->owner;
                 $sensors[] = $sensor;
             }
         }

@@ -14,4 +14,17 @@ class ServiceBinding
 	extends Base
 {
 	public $binding;
+
+	public function getType()
+	{
+		return 'binding';
+	}
+	
+	public function simpleProperties()
+    {
+        return array_merge(parent::simpleProperties(), [
+            'binding' => $this->binding
+        ]);
+    }
+
 }

@@ -12,12 +12,12 @@ use canis\sensors\remote\HttpTest;
 
 class Dynamic extends Base
 {
-	protected function defaultSensors()
+	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();
-		// $sensors['provider-sensor'] = [
-		// 	'class' => HttpTest::className()
-		// ];
+		$sensors['provider-sensor'] = [
+			'class' => HttpTest::className()
+		];
 		return $sensors;
 	}
 }

@@ -10,5 +10,4 @@ namespace canis\sensors\sites;
 
 interface SiteInterface
 {
-	public function getSensors();
 }

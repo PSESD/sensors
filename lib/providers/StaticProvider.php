@@ -9,18 +9,18 @@
 namespace canis\sensors\providers;
 
 use Yii;
-use canis\sensors\sites\HasSitesTrait;
-use canis\sensors\resources\HasResourcesTrait;
-use canis\sensors\base\HasSensorsTrait;
+use canis\sensors\sites\HasSitesBehavior;
+use canis\sensors\resources\HasResourcesBehavior;
+use canis\sensors\base\HasSensorsBehavior;
 use canis\sensors\remote\ProviderSensor;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
 	implements ProviderInterface
 {
-	use HasSitesTrait;
-	use HasResourcesTrait;
-	use HasSensorsTrait;
+	use HasSitesBehavior;
+	use HasResourcesBehavior;
+	use HasSensorsBehavior;
 
 	protected $_id;
 
@@ -49,7 +49,7 @@ abstract class Base
 		
 	}
 
-	protected function defaultSensors()
+	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();
 		$sensors['provider-sensor'] = [

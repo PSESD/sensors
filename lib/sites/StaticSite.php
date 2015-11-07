@@ -12,7 +12,7 @@ use canis\sensors\remote\HttpTest;
 
 class StaticSite extends Base
 {
-	protected function defaultSensors()
+	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();
 		$sensors['provider-sensor'] = [

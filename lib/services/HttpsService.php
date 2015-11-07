@@ -10,5 +10,12 @@ namespace canis\sensors\services;
 
 class HttpsService extends HttpService
 {
-
+	public function getDefaultName()
+	{
+		return 'Web (SSL)';
+	}
+	public function getDefaultId()
+	{
+		return 'https';
+	}
 }

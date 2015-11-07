@@ -14,16 +14,21 @@ abstract class Sensor
 	extends BaseObject
 	implements SensorInterface
 {
-	use HasSensorsTrait;
-
 	const STATE_CHECK_FAIL = 'checkFail';
 	const STATE_ERROR = 'error';
 	const STATE_LOW = 'low';
 	const STATE_NORMAL = 'normal';
 	const STATE_HIGH = 'high';
 	const STATE_UNCHECKED = 'unchecked';
-
+	
 	abstract public function name();
+
+	public function behaviors()
+	{
+		return array_merge(parent::behaviors(), [
+			'HasSensors' => ['class' => HasSensorsBehavior::className()]
+		]);
+	}
 
 	public function getName()
 	{
@@ -108,6 +113,11 @@ abstract class Sensor
 	public function getDefaultCheckRetryInterval()
 	{
 		return 5;
+	}
+
+	public function discoverInitialCheck($providerInstance)
+	{
+		return '+1 minute';
 	}
 
 	public function getCheckInterval($sensorInstance)
