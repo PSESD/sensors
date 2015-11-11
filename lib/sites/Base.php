@@ -148,7 +148,7 @@ abstract class Base
 	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();
-
 		return $sensors;
 	}
+
 }

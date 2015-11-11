@@ -33,6 +33,17 @@ abstract class BaseObject
         return $keys;
     }
 
+    public function getInfo()
+    {
+        $info = [];
+        if (($meta = $this->getMeta()) && !empty($meta)) {
+            foreach ($meta as $key => $value) {
+                if (substr($key, 0, 1) === '_') { continue; }
+                $info[$key] = $value;
+            }
+        }
+        return $info;
+    }
 	public function getPackage()
     {
     	$package = [];

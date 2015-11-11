@@ -35,28 +35,6 @@ abstract class Sensor
 		return $this->name();
 	}
 
-	public function loadModels(callable $modelBuilder)
-	{
-		if ($this->getModel() === null) {
-			$this->_model = $modelBuilder($this);
-		}
-		if (!$this->_model) {
-			return false;
-		}
-
-		foreach ($this->sensors as $sensor) {
-			if (!$sensor->loadModels($modelBuilder)) {
-				return false;
-			}
-		}
-
-		return $this->onInstantiation($this->_model->dataObject);
-	}
-
-	public function cleanModels(callable $modelBuilder)
-	{
-		
-	}
 
 	public function onInstantiation($sensorInstance)
 	{

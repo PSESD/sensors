@@ -12,7 +12,7 @@ class HttpsService extends HttpService
 {
 	public function getDefaultName()
 	{
-		return 'Web (SSL)';
+		return 'Secure Web';
 	}
 	public function getDefaultId()
 	{
