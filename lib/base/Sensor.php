@@ -102,4 +102,9 @@ abstract class Sensor
 	{
 		return '+1 minute';
 	}
+
+	public function getFailbackTime($sensorInstance)
+	{
+		return '+1 minute';
+	}
 }
