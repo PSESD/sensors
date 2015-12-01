@@ -20,7 +20,8 @@ abstract class Sensor
 	const STATE_NORMAL = 'normal';
 	const STATE_HIGH = 'high';
 	const STATE_UNCHECKED = 'unchecked';
-	
+	public $payload;
+
 	abstract public function name();
 
 	public function behaviors()

@@ -10,5 +10,5 @@ namespace canis\sensors\base;
 
 interface SensorDataInterface
 {
-	public function getDataValue();
+	public function getDataValue(CheckEvent $event);
 }

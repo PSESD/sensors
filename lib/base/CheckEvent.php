@@ -14,6 +14,7 @@ class CheckEvent extends \canis\messageStore\Simple
 	public $verifyState = false;
 	public $notify = false;
 	public $pause = false;
+    public $dataValue;
 	
 	public function __sleep()
     {
