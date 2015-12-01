@@ -11,7 +11,7 @@ namespace canis\sensors\remote;
 use Yii;
 use canis\sensors\base\CheckEvent;
 
-class ProviderSensor extends \canis\sensors\remote\Sensor
+class PullProviderSensor extends \canis\sensors\remote\Sensor
 {
 	public function name()
 	{

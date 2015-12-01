@@ -12,7 +12,6 @@ use Yii;
 use canis\sensors\sites\HasSitesBehavior;
 use canis\sensors\servers\HasServersBehavior;
 use canis\sensors\base\HasSensorsBehavior;
-use canis\sensors\remote\ProviderSensor;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
@@ -64,9 +63,6 @@ abstract class Base
 	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();
-		$sensors['provider-sensor'] = [
-			'class' => ProviderSensor::className()
-		];
 		return $sensors;
 	}
 
