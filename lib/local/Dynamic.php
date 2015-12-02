@@ -16,6 +16,16 @@ class Dynamic
 	extends Sensor
 	implements SensorDataInterface
 {
+	public $dataValuePrefix;
+	public $dataValuePostfix;
+
+	public function simpleProperties()
+    {
+    	$properties = parent::simpleProperties();
+    	$properties['dataValuePrefix'] = $this->dataValuePrefix;
+    	$properties['dataValuePostfix'] = $this->dataValuePostfix;
+    	return $properties;
+    }
 	public function name()
 	{
 		if (!isset($this->_name)) {
@@ -24,12 +34,17 @@ class Dynamic
 		return $this->_name;
 	}
 
-	public function getDataValue(CheckEvent $event)
+	public function getDataValue()
 	{
-		if (isset($this->payload['value'])) {
-			return $this->payload['value'];
+		if (isset($this->payload['dataValue'])) {
+			return $this->payload['dataValue'];
 		}
 		return null;
+	}
+
+	public function getDataValueFormatted()
+	{
+		return $this->dataValuePrefix . $this->getDataValue() . $this->dataValuePostfix;
 	}
 
 	protected function doCheck(CheckEvent $event)
@@ -48,7 +63,7 @@ class Dynamic
 			} elseif (isset($payload['state']) 
 				&& in_array($payload['state'], [static::STATE_ERROR, static::STATE_LOW, static::STATE_NORMAL, static::STATE_HIGH, static::STATE_UNCHECKED])) {
 				$event->state = $payload['state'];
-				$event->dataValue = $this->getDataValue($event);
+				$event->dataValue = $this->getDataValue();
 			} else {
 				$event->addError('Local sensor was expected to provide state information but did not.');
 				$event->state = static::STATE_ERROR;

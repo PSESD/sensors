@@ -142,4 +142,9 @@ abstract class BaseObject
     {
         return [];
     }
+
+    public function onInstantiation($instance)
+    {
+        return true;
+    }
 }

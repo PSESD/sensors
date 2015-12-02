@@ -15,7 +15,7 @@ class Dynamic extends Base
 	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();
-		$sensors['provider-sensor'] = [
+		$sensors['http-test'] = [
 			'class' => HttpTest::className()
 		];
 		return $sensors;

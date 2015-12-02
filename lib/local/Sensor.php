@@ -23,7 +23,7 @@ abstract class Sensor extends \canis\sensors\base\Sensor
 		return $this->_id;
 	}
 
-	public function getCheckInterval()
+	public function getCheckInterval($sensorInstance)
 	{
 		return false;
 	}

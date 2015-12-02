@@ -24,6 +24,13 @@ abstract class Sensor
 
 	abstract public function name();
 
+	public function simpleProperties()
+    {
+    	$properties = parent::simpleProperties();
+    	$properties['payload'] = $this->payload;
+    	return $properties;
+    }
+
 	public function behaviors()
 	{
 		return array_merge(parent::behaviors(), [
