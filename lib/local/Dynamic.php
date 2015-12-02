@@ -42,9 +42,17 @@ class Dynamic
 		return null;
 	}
 
+	public function formatDataPoint($dataValue)
+	{
+		if ($dataValue === null) {
+			return;
+		}
+		return $this->dataValuePrefix . $dataValue . $this->dataValuePostfix;
+	}
+
 	public function getDataValueFormatted()
 	{
-		return $this->dataValuePrefix . $this->getDataValue() . $this->dataValuePostfix;
+		return $this->formatDataPoint($this->dataValue);
 	}
 
 	protected function doCheck(CheckEvent $event)
