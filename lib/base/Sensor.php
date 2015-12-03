@@ -43,6 +43,53 @@ abstract class Sensor
 		return $this->name();
 	}
 
+	public function describeEvent($sensorInstance, $event)
+	{
+		$shiftParts = [];
+		$oldState = $event->old_state === static::STATE_CHECK_FAIL ? 'Check Fail' : $event->old_state;
+		$newState = $event->new_state === static::STATE_CHECK_FAIL ? 'Check Fail' : $event->new_state;;
+
+		$shiftParts[] = ucfirst($oldState);
+		$shiftParts[] = 'to';
+		$shiftParts[] = ucfirst($newState);
+
+		return implode(' ', $shiftParts);
+	}
+	
+	public function describeEventFormatted($sensorInstance, $event)
+	{
+		$shiftParts = [];
+		$oldState = $event->old_state === static::STATE_CHECK_FAIL ? 'Check Fail' : $event->old_state;
+		$newState = $event->new_state === static::STATE_CHECK_FAIL ? 'Check Fail' : $event->new_state;;
+		$shiftParts[] = ucfirst($oldState);
+		$shiftParts[] = '<span class="fa fa-arrow-right"></span>';
+		$shiftParts[] = ucfirst($newState);
+
+		return implode(' ', $shiftParts);
+	}
+
+	public function describe($sensorInstance)
+	{
+		if ($sensorInstance->model->state === static::STATE_NORMAL) {
+			return 'All is normal';
+		}
+		if ($sensorInstance->model->state === static::STATE_UNCHECKED) {
+			return 'Sensor is unchecked';
+		}
+		if ($sensorInstance->model->state === static::STATE_LOW) {
+			return 'Sensor is low';
+		}
+		if ($sensorInstance->model->state === static::STATE_HIGH) {
+			return 'Sensor is high';
+		}
+		if ($sensorInstance->model->state === static::STATE_ERROR) {
+			return 'Sensor contains an error';
+		}
+		if ($sensorInstance->model->state === static::STATE_FAIL) {
+			return 'Sensor could not be checked';
+		}
+		return 'Unknown sensor state';
+	}
 
 	public function onInstantiation($sensorInstance)
 	{
