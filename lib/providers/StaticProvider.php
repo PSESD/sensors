@@ -23,6 +23,11 @@ abstract class Base
 	use HasSensorsBehavior;
 
 	protected $_id;
+	
+	public function getObjectTypeDescriptor()
+	{
+		return 'Static Provider';
+	}
 
 	public function loadModels(callable $modelBuilder)
 	{

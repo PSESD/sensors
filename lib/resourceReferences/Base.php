@@ -23,6 +23,11 @@ abstract class Base
 
 	abstract public function getType();
 
+	public function getObjectTypeDescriptor()
+	{
+		return 'Resource Reference';
+	}
+
 	public function behaviors()
 	{
 		return array_merge(parent::behaviors(), [

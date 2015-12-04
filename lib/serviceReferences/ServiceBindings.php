@@ -10,10 +10,15 @@ namespace canis\sensors\serviceReferences;
 
 use Yii;
 
-class ServiceBinding 
+class ServiceBindings 
 	extends Base
 {
-	public $binding;
+	public $bindings;
+
+	public function getObjectTypeDescriptor()
+    {
+        return 'Service Binding';
+    }
 
 	public function getType()
 	{
@@ -23,7 +28,7 @@ class ServiceBinding
 	public function simpleProperties()
     {
         return array_merge(parent::simpleProperties(), [
-            'binding' => $this->binding
+            'bindings' => $this->bindings
         ]);
     }
 

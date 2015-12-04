@@ -12,6 +12,11 @@ use canis\sensors\remote\HttpTest;
 
 class StaticSite extends Base
 {
+	public function getObjectTypeDescriptor()
+    {
+        return 'Static Site';
+    }
+
 	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();

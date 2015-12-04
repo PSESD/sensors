@@ -24,6 +24,11 @@ abstract class Sensor
 
 	abstract public function name();
 
+	public function getObjectTypeDescriptor()
+	{
+		return 'Sensor';
+	}
+
 	public function simpleProperties()
     {
     	$properties = parent::simpleProperties();

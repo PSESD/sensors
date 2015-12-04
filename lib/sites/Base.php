@@ -25,6 +25,11 @@ abstract class Base
 	protected $_testUrl;
 	protected $_testLookFor = false;
 	
+	public function getObjectTypeDescriptor()
+    {
+        return 'Site';
+    }
+
 	public function behaviors()
 	{
 		return array_merge(parent::behaviors(), [

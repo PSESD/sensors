@@ -15,6 +15,12 @@ class PullProvider
 	extends Base
 	implements PullProviderInterface
 {
+	
+	public function getObjectTypeDescriptor()
+	{
+		return 'Pull Provider';
+	}
+
 	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();

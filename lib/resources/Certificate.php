@@ -14,6 +14,11 @@ class Certificate extends Base
 	public $startDate;
 	public $expirationDate;
 
+	public function getObjectTypeDescriptor()
+    {
+        return 'SSL Certificate';
+    }
+
 	public function simpleProperties()
     {
         return array_merge(parent::simpleProperties(), [

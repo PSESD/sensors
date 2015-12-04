@@ -8,6 +8,7 @@
 
 namespace canis\sensors\resources;
 
+use canis\sensors\base\HasSensorsBehavior;
 
 abstract class Base 
 	extends \canis\sensors\base\BaseObject
@@ -15,6 +16,17 @@ abstract class Base
 {
 	abstract public function getType();
 	
+    public function getObjectTypeDescriptor()
+    {
+        return 'Resource';
+    }
+
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            'HasSensors' => ['class' => HasSensorsBehavior::className()],
+        ]);
+    }
 
 	public function simpleProperties()
     {

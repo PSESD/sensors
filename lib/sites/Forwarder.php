@@ -12,6 +12,12 @@ class Forwarder extends Base
 {
 	public $from;
 	public $to;
+	
+	public function getObjectTypeDescriptor()
+    {
+        return 'Forwarding Site';
+    }
+
 	public function simpleProperties()
     {
         return array_merge(parent::simpleProperties(), [

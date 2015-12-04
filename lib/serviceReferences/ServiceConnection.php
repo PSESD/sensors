@@ -16,4 +16,9 @@ class ServiceConnection
 	{
 		return 'connection';
 	}
+
+	public function getObjectTypeDescriptor()
+    {
+        return 'Service Connection';
+    }
 }

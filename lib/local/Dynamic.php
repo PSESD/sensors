@@ -14,18 +14,7 @@ use canis\sensors\base\SensorDataInterface;
 
 class Dynamic 
 	extends Sensor
-	implements SensorDataInterface
 {
-	public $dataValuePrefix;
-	public $dataValuePostfix;
-
-	public function simpleProperties()
-    {
-    	$properties = parent::simpleProperties();
-    	$properties['dataValuePrefix'] = $this->dataValuePrefix;
-    	$properties['dataValuePostfix'] = $this->dataValuePostfix;
-    	return $properties;
-    }
 	public function name()
 	{
 		if (!isset($this->_name)) {
@@ -36,23 +25,7 @@ class Dynamic
 
 	public function getDataValue()
 	{
-		if (isset($this->payload['dataValue'])) {
-			return $this->payload['dataValue'];
-		}
 		return null;
-	}
-
-	public function formatDataPoint($dataValue)
-	{
-		if ($dataValue === null) {
-			return;
-		}
-		return $this->dataValuePrefix . $dataValue . $this->dataValuePostfix;
-	}
-
-	public function getDataValueFormatted()
-	{
-		return $this->formatDataPoint($this->dataValue);
 	}
 
 	protected function doCheck(CheckEvent $event)

@@ -8,13 +8,13 @@
 
 namespace canis\sensors\resources;
 
-class IP extends Base
+class Database extends Base
 {
-	public $ip;
+	public $dbName;
 
 	public function getObjectTypeDescriptor()
     {
-        return 'IP Address';
+        return 'Database';
     }
 
 	public function simpleProperties()
@@ -22,30 +22,30 @@ class IP extends Base
     	$properties = parent::simpleProperties();
     	unset($properties['id']);
         return array_merge($properties, [
-            'ip' => $this->ip
+            'dbName' => $this->dbName
         ]);
     }
 
 	public function getId()
 	{
-		return 'ip.'.$this->ip;
+		return 'database.'.$this->dbName;
 	}
 
 	public function getName()
 	{
-		return $this->ip;
+		return $this->dbName;
 	}
 
 	public function getType()
 	{
-		return 'ip';
+		return 'database';
 	}
 
 	public function getPackage()
     {
     	$package = parent::getPackage();
     	$package['id'] = $this->getId();
-    	$package['ip'] = $this->ip;
+    	$package['dbName'] = $this->dbName;
     	return $package;
     }
 }

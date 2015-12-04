@@ -33,6 +33,8 @@ abstract class BaseObject
         return $keys;
     }
 
+    abstract public function getObjectTypeDescriptor();
+
     public function getInfo()
     {
         $info = [];

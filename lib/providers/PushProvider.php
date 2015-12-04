@@ -13,5 +13,8 @@ class PushProvider
 	extends Base
 	implements PushProviderInterface
 {
-
+	public function getObjectTypeDescriptor()
+	{
+		return 'Push Provider';
+	}
 }

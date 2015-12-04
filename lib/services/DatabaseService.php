@@ -16,7 +16,7 @@ class DatabaseService extends Base
 	}
 	public function getDefaultName()
 	{
-		return 'db';
+		return 'Database';
 	}
 	public function getDefaultId()
 	{

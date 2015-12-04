@@ -10,5 +10,8 @@ namespace canis\sensors\servers;
 
 class DockerServer extends LinuxServer
 {
-
+	public function getObjectTypeDescriptor()
+    {
+        return 'Docker Server';
+    }
 }

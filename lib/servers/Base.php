@@ -20,6 +20,11 @@ abstract class Base
 {
 	protected $_id;
 
+	public function getObjectTypeDescriptor()
+    {
+        return 'Server';
+    }
+
 	public function behaviors()
 	{
 		return array_merge(parent::behaviors(), [

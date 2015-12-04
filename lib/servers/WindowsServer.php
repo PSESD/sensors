@@ -10,5 +10,8 @@ namespace canis\sensors\servers;
 
 class WindowsServer extends Server
 {
-
+	public function getObjectTypeDescriptor()
+    {
+        return 'Windows Server';
+    }
 }

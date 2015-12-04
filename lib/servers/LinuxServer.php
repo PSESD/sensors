@@ -10,5 +10,8 @@ namespace canis\sensors\servers;
 
 class LinuxServer extends Server
 {
-
+	public function getObjectTypeDescriptor()
+    {
+        return 'Linux Server';
+    }
 }

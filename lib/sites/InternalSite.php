@@ -12,6 +12,12 @@ use canis\sensors\remote\HttpTest;
 
 class InternalSite extends Base
 {
+
+	public function getObjectTypeDescriptor()
+    {
+        return 'Internal Only Site';
+    }
+
 	public function defaultSensors()
 	{
 		$sensors = parent::defaultSensors();

@@ -10,5 +10,4 @@ namespace canis\sensors\services;
 
 class CacheService extends Base
 {
-
 }
