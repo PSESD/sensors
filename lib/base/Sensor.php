@@ -22,7 +22,28 @@ abstract class Sensor
 	const STATE_UNCHECKED = 'unchecked';
 	public $payload;
 
+	protected $_isCritical;
+
 	abstract public function name();
+
+	public function getDefaultIsCritical()
+	{
+		return true;
+	}
+
+	public function getIsCritical()
+	{
+		if (!isset($this->_isCritical)) {
+			return $this->getDefaultIsCritical();
+		}
+		return $this->_isCritical;
+	}
+
+	public function setIsCritical($isCritical)
+	{
+		$this->_isCritical = $isCritical;
+		return $this;
+	}
 
 	public function getObjectTypeDescriptor()
 	{
