@@ -1,7 +1,7 @@
 <?php
-namespace canis\sensors\resourceReferences;
+namespace psesd\sensors\resourceReferences;
 
-class HasResourceReferencesBehavior extends \canis\sensors\base\HasBaseBehavior
+class HasResourceReferencesBehavior extends \psesd\sensors\base\HasBaseBehavior
 {
 	protected $_resourceReferences = [];
 	

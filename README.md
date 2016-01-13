@@ -1,1 +1,1 @@
-# canis/sensors
+# psesd/sensors

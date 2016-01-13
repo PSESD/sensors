@@ -1,16 +1,16 @@
 <?php
 /**
- * @link http://canis.io
+ * @link https://www.psesd.org
  *
- * @copyright Copyright (c) 2015 Canis
- * @license http://canis.io/license/
+ * @copyright Copyright (c) 2016 Puget Sound ESD
+ * @license https://raw.githubusercontent.com/PSESD/sensor/master/LICENSE/
  */
 
-namespace canis\sensors\local;
+namespace psesd\sensors\local;
 
 use Yii;
-use canis\sensors\base\CheckEvent;
-use canis\sensors\base\SensorDataInterface;
+use psesd\sensors\base\CheckEvent;
+use psesd\sensors\base\SensorDataInterface;
 
 class Dynamic 
 	extends Sensor

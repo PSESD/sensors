@@ -1,20 +1,20 @@
 <?php
 /**
- * @link http://canis.io
+ * @link https://www.psesd.org
  *
- * @copyright Copyright (c) 2015 Canis
- * @license http://canis.io/license/
+ * @copyright Copyright (c) 2016 Puget Sound ESD
+ * @license https://raw.githubusercontent.com/PSESD/sensor/master/LICENSE/
  */
 
-namespace canis\sensors\resourceReferences;
+namespace psesd\sensors\resourceReferences;
 
 use Yii;
-use canis\sensors\resources\HasResourcesBehavior;
-use canis\sensors\base\HasSensorsBehavior;
-use canis\sensors\remote\resourcesensor;
+use psesd\sensors\resources\HasResourcesBehavior;
+use psesd\sensors\base\HasSensorsBehavior;
+use psesd\sensors\remote\resourcesensor;
 
 abstract class Base 
-	extends \canis\sensors\base\BaseObject
+	extends \psesd\sensors\base\BaseObject
 	implements ResourceReferenceInterface
 {
 	protected $_object;
@@ -128,7 +128,7 @@ abstract class Base
 	{
 		$resources = [];
 		foreach ($this->resources as $resource) {
-			if ($resource instanceof \canis\sensors\resources\IP) {
+			if ($resource instanceof \psesd\sensors\resources\IP) {
 				$resources[] = $resource;
 			}
 		}

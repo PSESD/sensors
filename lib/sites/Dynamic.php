@@ -1,14 +1,14 @@
 <?php
 /**
- * @link http://canis.io
+ * @link https://www.psesd.org
  *
- * @copyright Copyright (c) 2015 Canis
- * @license http://canis.io/license/
+ * @copyright Copyright (c) 2016 Puget Sound ESD
+ * @license https://raw.githubusercontent.com/PSESD/sensor/master/LICENSE/
  */
 
-namespace canis\sensors\sites;
+namespace psesd\sensors\sites;
 
-use canis\sensors\remote\HttpTest;
+use psesd\sensors\remote\HttpTest;
 
 class Dynamic extends Base
 {

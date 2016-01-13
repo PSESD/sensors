@@ -1,18 +1,18 @@
 <?php
 /**
- * @link http://canis.io
+ * @link https://www.psesd.org
  *
- * @copyright Copyright (c) 2015 Canis
- * @license http://canis.io/license/
+ * @copyright Copyright (c) 2016 Puget Sound ESD
+ * @license https://raw.githubusercontent.com/PSESD/sensor/master/LICENSE/
  */
 
-namespace canis\sensors\remote;
+namespace psesd\sensors\remote;
 
 use Yii;
-use canis\sensors\base\CheckEvent;
+use psesd\sensors\base\CheckEvent;
 use linslin\yii2\curl;
 
-class HttpTest extends \canis\sensors\remote\Sensor
+class HttpTest extends \psesd\sensors\remote\Sensor
 {
 	public function name()
 	{

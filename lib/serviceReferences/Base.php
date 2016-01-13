@@ -1,21 +1,21 @@
 <?php
 /**
- * @link http://canis.io
+ * @link https://www.psesd.org
  *
- * @copyright Copyright (c) 2015 Canis
- * @license http://canis.io/license/
+ * @copyright Copyright (c) 2016 Puget Sound ESD
+ * @license https://raw.githubusercontent.com/PSESD/sensor/master/LICENSE/
  */
 
-namespace canis\sensors\serviceReferences;
+namespace psesd\sensors\serviceReferences;
 
 use Yii;
-use canis\sensors\resources\HasResourcesBehavior;
-use canis\sensors\resourceReferences\HasResourceReferencesBehavior;
-use canis\sensors\base\HasSensorsBehavior;
-use canis\sensors\remote\servicesensor;
+use psesd\sensors\resources\HasResourcesBehavior;
+use psesd\sensors\resourceReferences\HasResourceReferencesBehavior;
+use psesd\sensors\base\HasSensorsBehavior;
+use psesd\sensors\remote\servicesensor;
 
 abstract class Base 
-	extends \canis\sensors\base\BaseObject
+	extends \psesd\sensors\base\BaseObject
 	implements ServiceReferenceInterface
 {
 	protected $_object;
@@ -92,7 +92,7 @@ abstract class Base
 			}
 		}
 		if ($create) {
-			$resource = new \canis\sensors\resources\IP;
+			$resource = new \psesd\sensors\resources\IP;
 			$resource->ip = $ip;
 			$resource->parentObject = $this;
 			$this->_resources[] = $resource;
@@ -150,7 +150,7 @@ abstract class Base
 	{
 		$resources = [];
 		foreach ($this->resources as $resource) {
-			if ($resource instanceof \canis\sensors\resources\IP) {
+			if ($resource instanceof \psesd\sensors\resources\IP) {
 				$resources[] = $resource;
 			}
 		}

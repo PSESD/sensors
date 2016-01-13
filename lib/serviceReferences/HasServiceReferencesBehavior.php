@@ -1,7 +1,7 @@
 <?php
-namespace canis\sensors\serviceReferences;
+namespace psesd\sensors\serviceReferences;
 
-class HasServiceReferencesBehavior extends \canis\sensors\base\HasBaseBehavior
+class HasServiceReferencesBehavior extends \psesd\sensors\base\HasBaseBehavior
 {
 	protected $_serviceReferences = [];
 	
