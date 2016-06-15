@@ -15,11 +15,12 @@ class CheckEvent extends \canis\messageStore\Simple
 	public $notify = false;
 	public $pause = false;
     public $dataValue;
-	
+    public $model;
+    
 	public function __sleep()
     {
         $keys = array_keys((array) $this);
-        $bad = ["\0*\0_cache", "sensorInstance"];
+        $bad = ["\0*\0_cache", "sensorInstance", "model"];
         foreach ($keys as $k => $key) {
             if (in_array($key, $bad)) {
                 unset($keys[$k]);
