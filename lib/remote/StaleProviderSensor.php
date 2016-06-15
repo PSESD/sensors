@@ -1,17 +1,17 @@
 <?php
 /**
- * @link http://canis.io
+ * @link https://www.psesd.org
  *
- * @copyright Copyright (c) 2015 Canis
- * @license http://canis.io/license/
+ * @copyright Copyright (c) 2016 Puget Sound ESD
+ * @license https://raw.githubusercontent.com/PSESD/sensor/master/LICENSE/
  */
 
-namespace canis\sensors\remote;
+namespace psesd\sensors\remote;
 
 use Yii;
-use canis\sensors\base\CheckEvent;
+use psesd\sensors\base\CheckEvent;
 
-class StaleProviderSensor extends \canis\sensors\remote\Sensor
+class StaleProviderSensor extends \psesd\sensors\remote\Sensor
 {
 	public function name()
 	{
@@ -49,7 +49,7 @@ class StaleProviderSensor extends \canis\sensors\remote\Sensor
 			return '+1 minute';
 		}
 		$failedAttempts = 2;
-		$checkInterval = "+5 minutes";
+		$checkInterval = "+10 minutes";
         if (isset($providerModel->dataObject->attributes['checkInterval'])) {
             $checkInterval = $providerModel->dataObject->attributes['checkInterval'];
         }

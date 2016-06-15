@@ -12,6 +12,7 @@ use Yii;
 use psesd\sensors\sites\HasSitesBehavior;
 use psesd\sensors\servers\HasServersBehavior;
 use psesd\sensors\base\HasSensorsBehavior;
+use psesd\sensors\remote\StaleProviderSensor;
 
 abstract class Base 
 	extends \psesd\sensors\base\BaseObject
