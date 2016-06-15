@@ -1,8 +1,8 @@
 {
-	"name": "canis/sensors",
+	"name": "psesd/sensors",
 	"description": "Provides common sensor classes for both providers and hubs",
-	"keywords": ["yii", "canis"],
-	"homepage": "http://psesd.org",
+	"keywords": ["yii", "psesd"],
+	"homepage": "https://www.psesd.org",
 	"type": "yii2-extension",
 	"license": "BSD-3-Clause",
 	"minimum-stability": "dev",
@@ -13,9 +13,9 @@
 	"require-dev": {
 	},
     "autoload": {
-		"psr-4": { "canis\\sensors\\": "lib" }
+		"psr-4": { "psesd\\sensors\\": "lib" }
     },
     "extra": {
-    	"bootstrap": "canis\\sensors\\Extension"
+    	"bootstrap": "psesd\\sensors\\Extension"
     }
 }

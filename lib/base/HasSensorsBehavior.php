@@ -1,5 +1,5 @@
 <?php
-namespace canis\sensors\base;
+namespace psesd\sensors\base;
 
 class HasSensorsBehavior extends HasBaseBehavior
 {

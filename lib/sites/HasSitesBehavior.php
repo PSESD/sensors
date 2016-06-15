@@ -1,7 +1,7 @@
 <?php
-namespace canis\sensors\sites;
+namespace psesd\sensors\sites;
 
-class HasSitesBehavior extends \canis\sensors\base\HasBaseBehavior
+class HasSitesBehavior extends \psesd\sensors\base\HasBaseBehavior
 {
 	protected $_sites = [];
 	

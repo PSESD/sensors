@@ -1,7 +1,7 @@
 <?php
-namespace canis\sensors\services;
+namespace psesd\sensors\services;
 
-class HasServicesBehavior extends \canis\sensors\base\HasBaseBehavior
+class HasServicesBehavior extends \psesd\sensors\base\HasBaseBehavior
 {
 	protected $_services = [];
 	

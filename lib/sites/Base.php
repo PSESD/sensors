@@ -1,22 +1,22 @@
 <?php
 /**
- * @link http://canis.io
+ * @link https://www.psesd.org
  *
- * @copyright Copyright (c) 2015 Canis
- * @license http://canis.io/license/
+ * @copyright Copyright (c) 2016 Puget Sound ESD
+ * @license https://raw.githubusercontent.com/PSESD/sensor/master/LICENSE/
  */
 
-namespace canis\sensors\sites;
+namespace psesd\sensors\sites;
 
 use Yii;
-use canis\sensors\base\HasSensorsBehavior;
-use canis\sensors\services\HasServicesBehavior;
-use canis\sensors\serviceReferences\HasServiceReferencesBehavior;
-use canis\sensors\resourceReferences\HasResourceReferencesBehavior;
-use canis\sensors\resources\HasResourcesBehavior;
+use psesd\sensors\base\HasSensorsBehavior;
+use psesd\sensors\services\HasServicesBehavior;
+use psesd\sensors\serviceReferences\HasServiceReferencesBehavior;
+use psesd\sensors\resourceReferences\HasResourceReferencesBehavior;
+use psesd\sensors\resources\HasResourcesBehavior;
 
 abstract class Base 
-	extends \canis\sensors\base\BaseObject
+	extends \psesd\sensors\base\BaseObject
 	implements SiteInterface
 {
 	protected $_ips = [];
