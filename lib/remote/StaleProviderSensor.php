@@ -48,8 +48,8 @@ class StaleProviderSensor extends \psesd\sensors\remote\Sensor
 		if (!$providerModel) {
 			return '+1 minute';
 		}
-		$failedAttempts = 2;
-		$checkInterval = "+10 minutes";
+		$failedAttempts = 4;
+		$checkInterval = "+5 minutes";
         if (isset($providerModel->dataObject->attributes['checkInterval'])) {
             $checkInterval = $providerModel->dataObject->attributes['checkInterval'];
         }
